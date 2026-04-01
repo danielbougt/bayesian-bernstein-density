@@ -1,7 +1,5 @@
 Bayesian Density Estimation with Bernstein Polynomials
 ================
-Daniel Bougt-Hernnäs
-2026-04-01
 
 ## Overview
 
