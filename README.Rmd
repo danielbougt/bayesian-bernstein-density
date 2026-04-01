@@ -2,7 +2,7 @@
 title: "Bayesian Density Estimation with Bernstein Polynomials"
 author: "Daniel Bougt-Hernnäs"
 date: "2026-04-01"
-output: html_document
+output: github_document
 ---
 ## Overview
 
