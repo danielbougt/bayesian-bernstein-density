@@ -1,0 +1,5 @@
+source("./simulation/generate_data.r")
+source("./simulation/density_estimation.r")
+source("./simulation/merge_density_estimations.r")
+source("./simulation/model_selection_and_posterior.r")
+source("./simulation/plot_results.r")
