@@ -1,24 +1,36 @@
 ---
-title: "Bayesian Density Estimation with Bernstein Polynomials"
-author: "Daniel Bougt-Hernnäs"
-date: "2026-04-01"
 output: github_document
 ---
-## Overview
+# Bayesian Bernstein Density Estimation
 
-Estimate an unknown distribution from order statistic data using Bayesian nonparametrics and MCMC.
+This repository implements a Bayesian nonparametric framework to estimate an unknown distribution from order statistic data (e.g. auction outcomes). The approach uses Bernstein polynomials to approximate the distribution, with Dirichlet-distributed weights and inference via Metropolis–Hastings MCMC. The pipeline includes model selection over polynomial order, posterior inference, and visualization of estimated densities and distribution functions.
 
 ## Motivation
 
-In settings like auctions, we observe different order statistics (e.g. highest bids from varying numbers of bidders), rather than full samples. The method handles independent, non-identically distributed data and truncated observations, allowing recovery of the underlying distribution.
+In many economic and applied settings, we do not observe full data distributions but only partial information such as order statistics (e.g. highest bids, top incomes). Recovering the underlying distribution is essential for understanding behavior, evaluating policies, and conducting counterfactual analysis.
 
-## Method
+This project demonstrates how such latent distributions can be estimated using flexible, nonparametric Bayesian methods.
 
-- **Representation**: Bernstein polynomials approximate the CDF  
-- **Likelihood**: Based on order statistic densities  
-- **Prior**: Dirichlet over polynomial weights  
-- **Inference**: Metropolis–Hastings MCMC  
-- **Model selection**: Marginal likelihood over polynomial order  
+## Method Overview
+
+- **Bernstein polynomial approximation**  
+  The unknown CDF is approximated using Bernstein polynomials, ensuring valid densities and flexibility.
+
+- **Likelihood from order statistics**  
+  The model uses the analytical density of order statistics to link observed data to the latent distribution.
+
+- **Bayesian estimation**  
+  - Dirichlet prior on polynomial weights  
+  - Metropolis–Hastings MCMC for inference  
+
+- **Model selection**  
+  Polynomial order is selected using marginal likelihood, balancing flexibility and overfitting.
+
+- **Posterior inference**  
+  The pipeline produces:
+  - posterior mean estimates of density and CDF  
+  - credible intervals  
+  - visual comparisons with true distributions (in simulations)
 
 ## How to run
 
@@ -27,18 +39,33 @@ In settings like auctions, we observe different order statistics (e.g. highest b
 Run the entire simulation in batch mode:
 
 ```bash
-Rscript ./simulation/master.r
+Rscript ./simulation/master.R
 ```
 
 ### Manual execution (optional)
 
 Run scripts step-by-step for more control:
 
-1. Generate data  
-2. Estimate density (default `K_list=10`, can be changed)  
-3. Merge estimates  
-4. Run model selection and posterior analysis  
-5. Plot results
+1. Generate data 
+```bash
+Rscript ./simulation/generate_data.R
+```
+2. Run MCMC estimation (default `K_list=10`, can be changed) 
+```bash
+Rscript ./simulation/density_estimation.R
+```
+3. Merge estimates 
+```bash
+Rscript ./simulation/merge_density_estimation.R
+```
+4. Select model order and compute posterior summaries 
+```bash
+Rscript ./simulation/model_selection_and_posterior.R
+```
+5. Plot results  
+```bash
+Rscript ./simulation/plot_results.R
+```
 
 ## Output
 
@@ -57,16 +84,15 @@ Run scripts step-by-step for more control:
   <img src="./simulation/example_plots/examples_legend.png" width="100%">
 </p>
 
-## Workflow
-
-Simulate data → Build basis → Run MCMC → Select model → Summarize posterior → Plot results  
 
 ## Tools
 
 R (dplyr, stringr, extraDistr, pracma, ggplot2, latex2exp, mvtnorm)
 
-## Highlights
+## Key features
 
-- Bayesian nonparametric modeling  
-- Custom MCMC implementation  
-- Full statistical pipeline  
+- End-to-end Bayesian estimation pipeline
+- Flexible nonparametric modelling using Bernstein polynomials  
+- Explicit handling of order statistic data
+- Model selection via marginal likelihood
+- Reproducible and modular code structure
