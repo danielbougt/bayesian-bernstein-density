@@ -21,9 +21,7 @@ polynomials.
   - $w_k \ge 0$
   - $\sum w_k = 1$
 
-- CDF: $$
-  F(x \mid w, K) = \sum_{k=1}^K W_k \binom{K}{k} x^k (1-x)^{K-k}, \quad W_k = \sum_{j=1}^k w_j
-  $$
+- CDF: $F(x \mid w, K) = \sum_{k=1}^K W_k \binom{K}{k} x^k (1-x)^{K-k}, \quad W_k = \sum_{j=1}^k w_j$
 
 ## Prior
 
@@ -31,9 +29,7 @@ polynomials.
 
 ## Inference
 
-Posterior: $$
-p(w \mid K, \text{data})
-$$
+Posterior: $p(w \mid K, \text{data})$
 
 Estimated using Metropolis–Hastings MCMC.
 
@@ -41,13 +37,9 @@ Estimated using Metropolis–Hastings MCMC.
 
 Using posterior samples $w^{(s)}$:
 
-- Density: $$
-  \hat f(x) = \frac{1}{S} \sum_{s=1}^S f(x \mid w^{(s)}, K)
-  $$
+- Density: $\hat f(x) = \frac{1}{S} \sum_{s=1}^S f(x \mid w^{(s)}, K)$
 
-- CDF: $$
-  \hat F(x) = \frac{1}{S} \sum_{s=1}^S F(x \mid w^{(s)}, K)
-  $$
+- CDF: $\hat F(x) = \frac{1}{S} \sum_{s=1}^S F(x \mid w^{(s)}, K)$
 
 ## Model Selection
 
