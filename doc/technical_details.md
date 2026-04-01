@@ -14,8 +14,7 @@ polynomials.
 - Data: $x_1, ..., x_n \sim F(x)$
 
 - Density: 
-  \[f(x \mid w, K) = \sum_{k=1}^K w_k \, \text{Beta}(x; k, K-k+1)
-  \]
+  $f(x \mid w, K) = \sum_{k=1}^K w_k \, \text{Beta}(x; k, K-k+1)$
 
 - Constraints:
 
